@@ -41,6 +41,7 @@ async function fetchTickets() {
         errorMessage.textContent = `Error: ${error.message}`;
         ticketContainer.innerHTML = ' ';
     }
+    // Hiding the loading indicator by setting the disply style to none and this will execute regardless of whether the fetch was succesful or never occured
     finally {
         loadingIndicator.style.display = 'none';
     }
@@ -48,5 +49,3 @@ async function fetchTickets() {
 
 // Call the function when the page is loaded
 document.addEventListener('DOMContentLoaded', fetchTickets);
-
-// Task 4: Use finally to Ensure Cleanup

@@ -4,10 +4,12 @@ async function fetchTickets() {
     console.log('Function started...');
     const ticketContainer = document.getElementById('ticket-container');
     const errorMessage = document.getElementById('error-message');
+    const loadingIndicator = document.getElementById('loading-indicator');
 
     // Using try-catch to handle any errors that may occur during the fetch process
     try {
         console.log('Fetching data...');
+        loadingIndicator.style.display = 'block';
         const response = await fetch('https://jsonplaceholder.typicode.com/posts');
 
         if (!response.ok) {
@@ -37,10 +39,14 @@ async function fetchTickets() {
     }
     catch (error) {
         errorMessage.textContent = `Error: ${error.message}`;
+        ticketContainer.innerHTML = ' ';
+    }
+    finally {
+        loadingIndicator.style.display = 'none';
     }
 }
 
 // Call the function when the page is loaded
-document.addEventListener('Ticket container loaded', fetchTickets);
+document.addEventListener('DOMContentLoaded', fetchTickets);
 
-// Task 3: Display Tickets Dynamically on the Page
+// Task 4: Use finally to Ensure Cleanup
